@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class PropertiesController {
+public class AgentController {
 
-    @GetMapping({"/properties", "/property-grid.html"})
-    public String goBlog(){
-        return "property-grid";
+    @GetMapping({"/agents", "/agents-grid.html"})
+    public String goAgents(){
+        return "agents-grid";
     }
 }
