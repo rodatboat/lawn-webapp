@@ -9,6 +9,4 @@ public class ImageService {
 
     @Autowired
     private ImageRepository imageRepository;
-
-
 }
