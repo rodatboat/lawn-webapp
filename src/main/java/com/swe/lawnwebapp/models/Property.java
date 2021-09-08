@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,10 +17,14 @@ public class Property {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private int price;
-    private int area; // in ft^2 or m^2
-    private String address;
-    private String img_url;
+    private String price;
+    private float size; // in ft^2 or m^2
+    public String address;
 
-    private int agent_id;
+    @ManyToOne
+    @JoinColumn(name="agentid", insertable=false, updatable=false)
+    private Agent agent;
+
+    @OneToMany(mappedBy = "property")
+    private List<Image> images;
 }
