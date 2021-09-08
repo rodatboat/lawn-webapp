@@ -16,7 +16,7 @@ public class PropertyController {
 
     @GetMapping({"/properties", "/property-grid.html"})
     public String goProperties(Model model){
-        //model.addAttribute("properties", propertyService.getProperties());
+        model.addAttribute("properties", propertyService.getProperties());
 
         return "property-grid";
     }

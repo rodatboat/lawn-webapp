@@ -17,7 +17,7 @@ public class Property {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String price;
+    private int price;
     private float size; // in ft^2 or m^2
     public String address;
 
