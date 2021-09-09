@@ -19,19 +19,14 @@ import java.util.List;
 
 @Controller
 public class UserController {
-
-    //private User loggedInUser;
-
-//    @Autowired
-//    private PropertyService propertyService;
+//    private User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal;
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/user/watchlist")
+    @GetMapping({"/user/watchlist", "/user"})
     public String goUser(Model model, Principal user){
-//        loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
+
         if(user == null){
             return "login";
         }
@@ -75,5 +70,7 @@ public class UserController {
 ////        return "redirect:/countries";
 //        return "redirect:/user/watchlist";
 //    }
+
+
 
 }

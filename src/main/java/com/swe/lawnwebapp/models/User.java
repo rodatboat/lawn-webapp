@@ -32,13 +32,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
-    // TODO: Setup new table of watchlist items w/ user_id & property_id;
-
-//    @ManyToMany
-//    @JoinTable(name = "user_watchlist",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "property_id"))
-//    private List<Property> watchlist;
+    // TODO: Setup favorites Property list
+    //@OneToMany(mappedBy = "user")
+    //private List<Property> favorites;
 
     private boolean locked = false;
     private boolean enabled = true;

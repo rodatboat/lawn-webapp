@@ -18,8 +18,7 @@ public class RegisterController {
     @PostMapping(value = "register")
     public String register(@RequestBody Register request){
         if(registerService.register(request)){
-            // TODO: Send to profile page.
-            return "index";
+            return "/user/watchlist";
         }
 
         // Fails to register send to home.

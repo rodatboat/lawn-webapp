@@ -189,7 +189,7 @@
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
               <h1 class="title-single" th:text="${user.getUsername() + '''s Watchlist'}">Our Amazing Posts</h1>
-<!--              <span class="color-text-a" th:text="'Total' + ${user.getWatchlist().size()}">0 properties watched</span>-->
+              <span class="color-text-a" th:text="'Total' + ${user.getFavorites().size()}">0 properties watched</span>
             </div>
           </div>
           <div class="col-md-12 col-lg-4">
@@ -213,10 +213,10 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4" >
-<!--            <div class="col-md-4" th:each="property : ${user.getWatchlist()}">-->
+            <div class="col-md-4" th:each="property : ${user.getFavorites()}">
             <div class="card-box-b card-shadow news-box">
               <div class="img-box-b">
-<!--                <img th:src="@{'/../assets/img/' + ${property.getImages()[0].getImage_url()}}" alt="" class="img-b img-fluid">-->
+                <img th:src="@{'/../assets/img/' + ${property.getImages()[0].getImage_url()}}" alt="" class="img-b img-fluid">
               </div>
               <div class="card-overlay">
                 <div class="card-header-b">
