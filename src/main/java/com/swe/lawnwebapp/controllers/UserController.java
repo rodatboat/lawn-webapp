@@ -6,6 +6,7 @@ import com.swe.lawnwebapp.services.PropertyService;
 import com.swe.lawnwebapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,11 +34,9 @@ public class UserController {
 //
         if(user == null){
             return "login";
-        } else {
-            System.out.println(user);
         }
-//
-//        model.addAttribute("user", loggedInUser);
+
+        model.addAttribute("user", userService.loadUserByUsername(user.getName()));
 
         return "blogs-grid";
     }

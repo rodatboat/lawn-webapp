@@ -10,20 +10,20 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: EstateAgency - v4.3.0
@@ -188,8 +188,8 @@
         <div class="row">
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
-              <h1 class="title-single" th:text="${user.getUsername() + 's Watchlist'}">Our Amazing Posts</h1>
-              <span class="color-text-a" th:text="'Total' + ${user.getWatchlist().size()}">0 properties watched</span>
+              <h1 class="title-single" th:text="${user.getUsername() + '''s Watchlist'}">Our Amazing Posts</h1>
+<!--              <span class="color-text-a" th:text="'Total' + ${user.getWatchlist().size()}">0 properties watched</span>-->
             </div>
           </div>
           <div class="col-md-12 col-lg-4">
@@ -212,15 +212,16 @@
     <section class="news-grid grid">
       <div class="container">
         <div class="row">
-          <div class="col-md-4" th:each="property : ${user.getWatchlist()}">
+          <div class="col-md-4" >
+<!--            <div class="col-md-4" th:each="property : ${user.getWatchlist()}">-->
             <div class="card-box-b card-shadow news-box">
               <div class="img-box-b">
-                <img th:src="@{'/assets/img/' + ${property.getImages()[0].getImage_url()}}" alt="" class="img-b img-fluid">
+<!--                <img th:src="@{'/../assets/img/' + ${property.getImages()[0].getImage_url()}}" alt="" class="img-b img-fluid">-->
               </div>
               <div class="card-overlay">
                 <div class="card-header-b">
                   <div class="card-category-b">
-                    <a href="#" class="category-b" th:text="'$ ' + ${property.price}">$99999</a>
+<!--                    <a href="#" class="category-b" th:text="'$ ' + ${property.price}">$99999</a>-->
                   </div>
                   <div class="card-title-b">
                     <h2 class="title-2">
@@ -239,7 +240,7 @@
           <div class="col-md-4">
             <div class="card-box-b card-shadow news-box">
               <div class="img-box-b">
-                <img src="assets/img/post-5.jpg" alt="" class="img-b img-fluid">
+                <img src="../assets/img/post-5.jpg" alt="" class="img-b img-fluid">
               </div>
               <div class="card-overlay">
                 <div class="card-header-b">
@@ -453,12 +454,12 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="../assets/js/main.js"></script>
 
 </body>
 
