@@ -5,6 +5,8 @@ import com.swe.lawnwebapp.models.Property;
 import com.swe.lawnwebapp.repositories.AgentRepository;
 import com.swe.lawnwebapp.repositories.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +27,8 @@ public class ApplicationController {
 
     @GetMapping({"/index", "/", "/index.html"})
     public String goHome(Model model){
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        System.out.println(authentication.getName());
 
         Random rand = new Random();
 
@@ -62,5 +66,10 @@ public class ApplicationController {
     @GetMapping("/login")
     public String goLogin(){
         return "login";
+    }
+
+    @GetMapping("/logout")
+    public String goLogout(){
+        return "redirect:index";
     }
 }
