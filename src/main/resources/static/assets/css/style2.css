@@ -1695,21 +1695,7 @@ div[data-role="editor-toolbar"] {
 
 
 
-.log-arrow-up {
 
-    background: url("../img/arrow-up.png") no-repeat;
-
-    width: 20px;
-
-    height: 11px;
-
-    position: absolute;
-
-    right: 20px;
-
-    top: -10px;
-
-}
 
 /*----*/
 
@@ -3339,8 +3325,6 @@ div[data-role="editor-toolbar"] {
 
 /*-----	map-----*/
 
-* Google maps */
-
 
 
 .gmap iframe{
@@ -3487,34 +3471,6 @@ div[data-role="editor-toolbar"] {
 
 
 
-.search {
-
-    margin-top: 6px ;
-
-    width: 20px;
-
-    -webkit-transition: all .3s ease;
-
-    -moz-transition: all .3s ease;
-
-    -ms-transition: all .3s ease;
-
-    -o-transition: all .3s ease;
-
-    transition: all .3s ease;
-
-    border: 1px solid #fff;
-
-    box-shadow: none;
-
-    background: url("../img/search-icon.jpg") no-repeat 10px 8px;
-
-    padding:0 5px 0 35px;
-
-    color: #fff;
-
-}
-
 
 
 .search:focus {
@@ -3645,13 +3601,6 @@ div[data-role="editor-toolbar"] {
 
 
 
-.state-overview .value h1 {
-
-    font-weight: 300;
-
-    font-weight: 30px;
-
-}
 
 
 
@@ -4112,17 +4061,7 @@ div[data-role="editor-toolbar"] {
 
 
 
-@media screen and (-webkit-min-device-pixel-ratio:0) {
 
-    /* Safari and Chrome */
-
-    .panel-footer.revenue-foot {
-
-        margin-bottom: -4px;
-
-    };
-
-    }
 
 
 
@@ -8855,21 +8794,7 @@ table.sliders tr td {
 
 
 
-.cke_top, .cke_bottom {
 
-    background: #F5F5F5 !important;
-
-    background: -moz-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
-
-    background: -webkit-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
-
-    background: -o-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
-
-    box-shadow: none;
-
-    padding: 6px 8px 2px;
-
-}
 
 
 
