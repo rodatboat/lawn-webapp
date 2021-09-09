@@ -3,6 +3,7 @@ package com.swe.lawnwebapp.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +14,8 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User{
+public class User {
+
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
