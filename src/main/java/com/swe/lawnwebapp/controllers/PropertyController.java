@@ -1,7 +1,5 @@
 package com.swe.lawnwebapp.controllers;
 
-import com.swe.lawnwebapp.models.Image;
-import com.swe.lawnwebapp.models.Property;
 import com.swe.lawnwebapp.services.ImageService;
 import com.swe.lawnwebapp.services.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;

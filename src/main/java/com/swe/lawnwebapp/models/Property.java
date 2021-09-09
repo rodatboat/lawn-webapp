@@ -28,8 +28,8 @@ public class Property {
     @OneToMany(mappedBy = "property")
     private List<Image> images;
 
-    @ManyToMany(mappedBy = "watchlist")
-    private List<User> watchers;
+//    @ManyToMany(mappedBy = "watchlist")
+//    private List<User> watchers;
 
     public List<Image> getImages(){
         return images;

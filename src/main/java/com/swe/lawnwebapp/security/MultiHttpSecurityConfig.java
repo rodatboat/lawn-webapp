@@ -31,18 +31,13 @@ public class MultiHttpSecurityConfig {
                     .csrf().disable()
                     .authorizeRequests()
 
-//                    .antMatchers("/**").hasAnyRole("ADMIN")
+                    .antMatchers("/**").permitAll()
+                    .anyRequest().authenticated()
 
-                    .antMatchers("/",
-                            "/properties/*",
-                            "/agents/*",
-                            "/about/*",
-                            "/register/*")
-                        .permitAll()
                     .and()
                     .formLogin();
         }
-
+        //.antMatchers("/user/**").hasRole("USER")
         //.antMatchers("/agents/**").hasAnyRole("ADMIN","USER")
         //.antMatchers("/**").anonymous()
         //.anyRequest().authenticated()

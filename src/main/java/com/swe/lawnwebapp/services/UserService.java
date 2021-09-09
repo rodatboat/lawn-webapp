@@ -51,23 +51,23 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-//    //Get All Users
-//    public List<User> findAll(){
-//        return userRepository.findAll();
-//    }
-//
-//    //Get User By Id
-//    public Optional<User> findById(int id) {
-//        return userRepository.findById(id);
-//    }
-//
-//    //Delete User
-//    public void delete(int id) {
-//        userRepository.deleteById(id);
-//    }
-//
-//    //Update User
-//    public void save(User user) {
-//        userRepository.save(user);
-//    }
+    //Get All Users
+    public List<User> findAll(){
+        return userRepository.findAll();
+    }
+
+    //Get User By Id
+    public Optional<User> findById(int id) {
+        return userRepository.findById(id);
+    }
+
+    //Delete User
+    public void delete(int id) {
+        userRepository.deleteById(id);
+    }
+
+    //Update User
+    public void save(User user) {
+        userRepository.save(user);
+    }
 }
