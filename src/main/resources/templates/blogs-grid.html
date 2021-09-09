@@ -228,7 +228,7 @@
                 </div>
                 <div class="card-title-b">
                   <h2 class="title-2">
-                    <a th:href="@{'/properties/' + ${favorite.getId()}}" th:text="'$ ' + ${#strings.toUpperCase(favorite.address)}">Travel is comming
+                    <a th:href="@{'/properties/' + ${favorite.getId()}}" th:text="${#strings.toUpperCase(favorite.address)}">Travel is comming
                       <br> new</a>
                   </h2>
                 </div>

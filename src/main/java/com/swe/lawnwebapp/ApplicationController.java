@@ -31,10 +31,8 @@ public class ApplicationController {
     @Autowired
     private AgentRepository agentRepository;
 
-    @GetMapping({"/index", "/", "/index.html"})
+    @GetMapping({"/index", "/", "/index.html", "/home"})
     public String goHome(Model model){
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        System.out.println(authentication.getName());
 
         Random rand = new Random();
 

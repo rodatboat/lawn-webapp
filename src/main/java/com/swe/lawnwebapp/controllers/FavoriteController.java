@@ -37,7 +37,7 @@ public class FavoriteController {
         }
 
         User userInfo = (User) userService.loadUserByUsername(user.getName());
-        List<Property> favoritesList = new ArrayList<Property>();
+        List<Property> favoritesList = new ArrayList<>();
 
         for(Favorite fav : userInfo.getFavorites()){
             propertyService.findById(fav.getProperty_id()).ifPresent((o)-> favoritesList.add(o));

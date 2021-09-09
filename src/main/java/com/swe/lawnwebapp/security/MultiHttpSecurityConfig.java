@@ -32,8 +32,17 @@ public class MultiHttpSecurityConfig {
                     .csrf().disable()
                     .authorizeRequests()
 
-                    .antMatchers("/**").permitAll()
+                    .antMatchers("/admin").hasRole("ADMIN")
+                    .antMatchers("/agent").hasAnyRole("AGENT", "ADMIN")
+                    .antMatchers("/user").hasAnyRole("USER", "ADMIN")
+
+                    .antMatchers("/",
+                            "/properties/**",
+                            "/agents/**",
+                            "/assets/**").permitAll()
                     .anyRequest().authenticated()
+
+                    .and().logout().logoutSuccessUrl("/index.html").permitAll()
 
                     .and()
                     .formLogin();
