@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -54,17 +55,18 @@ public class FavoriteController {
 
         return "blogs-grid";
     }
-//
+
 //    // th:href="@{/countries/findById/(id=${country.id})}"
-//    @PostMapping("/user/watchlistAdd")
-//    public String watchlistAdd(int id){
-//        loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//        if(loggedInUser == null){
-//            return "/login";
-//        }
-//
-//        List<Property> watchlist = loggedInUser.getWatchlist();
+    @PostMapping("/user/watchlistAdd")
+    public String watchlistAdd(int id, Principal user){
+
+        if(user == null){
+            return "/login";
+        }
+
+        // TODO: Implement delete watchlist item.
+
+//        List<Property> watchlist = user.getWatchlist();
 //
 //        try{
 //            propertyService.findById(id).ifPresent((o) -> watchlist.add(o));
@@ -74,10 +76,10 @@ public class FavoriteController {
 //        } catch (Exception e){
 //            throw new IllegalStateException("");
 //        }
-//
-//        return "redirect:/user/watchlist";
-//    }
-//
+
+        return "redirect:/user/watchlist";
+    }
+
     @RequestMapping(value="/user/watchlistDelete", method = {RequestMethod.DELETE, RequestMethod.GET})
     public String watchlistDelete(int id, Principal user){
 
