@@ -58,4 +58,9 @@ public class ApplicationController {
 
         return "index";
     }
+
+    @GetMapping("/login")
+    public String goLogin(){
+        return "login";
+    }
 }
