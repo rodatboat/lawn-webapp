@@ -242,7 +242,13 @@
                   </div>
                   <div class="card-body-a">
                     <div class="price-box d-flex">
-                      <span class="price-a">buy | <span th:text="'$ ' + ${property.price}"></span></span>
+                      <span class="price-a">
+                        <a th:href="@{'/properties/' + ${property.id}}" class="link-a">buy |
+                          <span th:text="'$ ' + ${property.price}"></span></a></span>
+                    </div>
+                    <div class="price-box d-flex">
+                      <span class="price-a"> <!-- style="border-color: red;" -->
+                        <a th:href="@{'/properties/' + ${property.id}}" class="link-a">+ Watchlist</a></span>
                     </div>
                     <a th:href="@{'/properties/' + ${property.id}}" class="link-a">Click here to view
                       <span class="bi bi-chevron-right"></span>
