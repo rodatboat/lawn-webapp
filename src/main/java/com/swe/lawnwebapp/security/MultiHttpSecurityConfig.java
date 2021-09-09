@@ -27,6 +27,7 @@ public class MultiHttpSecurityConfig {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
+            // TODO: Fix HTTP configuration.
             http
                     .csrf().disable()
                     .authorizeRequests()
