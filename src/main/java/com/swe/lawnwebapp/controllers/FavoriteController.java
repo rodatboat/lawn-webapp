@@ -6,11 +6,15 @@ import com.swe.lawnwebapp.models.User;
 import com.swe.lawnwebapp.services.FavoriteService;
 import com.swe.lawnwebapp.services.PropertyService;
 import com.swe.lawnwebapp.services.UserService;
+import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -37,12 +41,13 @@ public class FavoriteController {
         }
 
         User userInfo = (User) userService.loadUserByUsername(user.getName());
-        List<Property> favoritesList = new ArrayList<>();
+        List<Pair<Favorite, Property>> favoritesList = new ArrayList<>();
 
         for(Favorite fav : userInfo.getFavorites()){
-            propertyService.findById(fav.getProperty_id()).ifPresent((o)-> favoritesList.add(o));
+            propertyService.findById(fav.getProperty_id()).ifPresent((prop)-> favoritesList.add(new Pair(fav, prop)));
         }
 
+        // public Pair(K key, V value)
         model.addAttribute("user", userInfo);
         model.addAttribute("favorites", favoritesList);
 
@@ -73,15 +78,14 @@ public class FavoriteController {
 //        return "redirect:/user/watchlist";
 //    }
 //
-//    @RequestMapping(value="/user/watchlistDelete", method = {RequestMethod.DELETE, RequestMethod.GET})
-//    public String watchlistDelete(int id){
-//        loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//        if(loggedInUser == null){
-//            return "/login";
-//        }
-////        countryService.delete(id);
-////        return "redirect:/countries";
-//        return "redirect:/user/watchlist";
-//    }
+    @RequestMapping(value="/user/watchlistDelete", method = {RequestMethod.DELETE, RequestMethod.GET})
+    public String watchlistDelete(int id, Principal user){
+
+        if(user == null){
+            return "/login";
+        }
+        favoriteService.delete(id);
+
+        return "redirect:/user/watchlist";
+    }
 }

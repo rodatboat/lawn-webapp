@@ -18,6 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User implements UserDetails {
+//    TODO: Create Security Questions Entity, if all correct. Allow to change password.
 
     @Id
     @SequenceGenerator(name="user_sequence",

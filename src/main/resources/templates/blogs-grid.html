@@ -192,8 +192,8 @@
                     <div class="title-single-box">
                         <h1 class="title-single" th:text="${user.getUsername() + '''s Watchlist'}">Our Amazing
                             Posts</h1>
-                        <span class="color-text-a" th:text="'Watching '
-                        + ${user.getFavorites().size()} + ' properties'">0 properties watched</span>
+                        <span class="color-text-a" th:text="'Watching: '
+                        + ${user.getFavorites().size()} + ''">0 properties watched</span>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-4">
@@ -219,21 +219,24 @@
         <div class="col-md-4" th:each="favorite : ${favorites}">
           <div class="card-box-b card-shadow news-box">
             <div class="img-box-b">
-              <img th:src="@{'/../assets/img/' + ${favorite.getImages()[0].getImage_url()}}" alt="" class="img-b img-fluid">
+              <img th:src="@{'/../assets/img/' + ${favorite.getValue().getImages()[0].getImage_url()}}" alt="" class="img-b img-fluid">
             </div>
             <div class="card-overlay">
               <div class="card-header-b">
                 <div class="card-category-b">
-                  <a th:href="@{'/properties/' + ${favorite.getId()}}" class="category-b"  th:text="'$ ' + ${favorite.price}">Travel</a>
+                  <a th:href="@{'/properties/' + ${favorite.getValue().getId()}}" class="category-b"  th:text="'$ ' + ${favorite.getValue().price}">Travel</a>
                 </div>
+                  <div class="card-category-b" style="margin-top: 10px;">
+                      <a th:href="@{/user/watchlistDelete/(id=${favorite.getKey().getId()})}" class="category-b" style="background-color: red;">Remove Listing</a>
+                  </div>
                 <div class="card-title-b">
                   <h2 class="title-2">
-                    <a th:href="@{'/properties/' + ${favorite.getId()}}" th:text="${#strings.toUpperCase(favorite.address)}">Travel is comming
+                    <a th:href="@{'/properties/' + ${favorite.getValue().getId()}}" th:text="${#strings.toUpperCase(favorite.getValue().address)}">Travel is comming
                       <br> new</a>
                   </h2>
                 </div>
                 <div class="card-date">
-                  <span class="date-b" th:text="${favorite.size} + ' acre(s)'">1 acre</span>
+                  <span class="date-b" th:text="${favorite.getValue().size} + ' acre(s)'">1 acre</span>
                 </div>
               </div>
             </div>

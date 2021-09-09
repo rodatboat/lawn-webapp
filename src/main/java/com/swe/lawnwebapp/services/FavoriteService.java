@@ -21,4 +21,8 @@ public class FavoriteService {
     public Optional<Favorite> findById(int id){
         return favoriteRepository.findById(id);
     }
+
+    public void delete(Integer id){
+        favoriteRepository.deleteById(id);
+    }
 }
