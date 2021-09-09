@@ -27,4 +27,8 @@ public class Property {
 
     @OneToMany(mappedBy = "property")
     private List<Image> images;
+
+    public List<Image> getImages(){
+        return images;
+    }
 }

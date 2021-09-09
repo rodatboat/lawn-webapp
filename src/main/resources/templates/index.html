@@ -186,7 +186,7 @@
     <div class="swiper-wrapper">
 
       <div class="swiper-slide carousel-item-a intro-item bg-image"
-           th:each="property : ${properties}" th:style="'background-image: url(assets/img/' + slide-1 + '.jpg)'">
+           th:each="property : ${properties}" th:style="'background-image: url(assets/img/' + ${property.getImages()[0].getImage_url()} + ')'">
         <div class="overlay overlay-a"></div>
         <div class="intro-content display-table">
           <div class="table-cell">
@@ -202,7 +202,7 @@
                       <br> Olive Road Two
                     </h1>
                     <p class="intro-subtitle intro-price" >
-                      <a th:href="@{'/properties/' + ${property.id}}"><span class="price-a">buy | <span th:text="'$' + ${property.price}"></span></span></a>
+                      <a th:href="@{'/properties/' + ${property.id}}"><span class="price-a">buy | <span th:text="'$ ' + ${property.price}"></span></span></a>
                     </p>
                   </div>
                 </div>
@@ -356,7 +356,7 @@
             <div class="carousel-item-b swiper-slide" th:each="property : ${latestproperties}">
               <div class="card-box-a card-shadow">
                 <div class="img-box-a">
-                  <img th:src="@{'assets/img/property-1.jpg'}" class="img-a img-fluid">
+                  <img th:src="@{'/assets/img/' + ${property.getImages()[0].getImage_url()}}" class="img-a img-fluid">
                 </div>
                 <div class="card-overlay">
                   <div class="card-overlay-a-content">
@@ -368,7 +368,7 @@
                     </div>
                     <div class="card-body-a">
                       <div class="price-box d-flex">
-                        <span class="price-a">buy | <span th:text="'$' + ${property.price}"></span></span>
+                        <span class="price-a">buy | <span th:text="'$ ' + ${property.price}"></span></span>
                       </div>
                       <a th:href="@{'/properties/' + ${property.id}}" class="link-a">Click here to view
                         <span class="bi bi-chevron-right"></span>

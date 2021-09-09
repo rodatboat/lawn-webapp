@@ -230,7 +230,7 @@
             <div class="card-box-a card-shadow">
               <div class="img-box-a">
 <!--                <img th:src="@{'assets/img/' + ${property.img_url} + '.jpg'}" alt="" class="img-a img-fluid">-->
-                <img th:src="@{'assets/img/property-1.jpg'}" alt="" class="img-a img-fluid">
+                <img th:src="@{'/assets/img/' + ${property.getImages()[0].getImage_url()}}" alt="" class="img-a img-fluid">
               </div>
               <div class="card-overlay">
                 <div class="card-overlay-a-content">
@@ -242,7 +242,7 @@
                   </div>
                   <div class="card-body-a">
                     <div class="price-box d-flex">
-                      <span class="price-a">buy | <span th:text="'$' + ${property.price}"></span></span>
+                      <span class="price-a">buy | <span th:text="'$ ' + ${property.price}"></span></span>
                     </div>
                     <a th:href="@{'/properties/' + ${property.id}}" class="link-a">Click here to view
                       <span class="bi bi-chevron-right"></span>
@@ -258,7 +258,7 @@
                       <li>
                         <h4 class="card-info-title">Acres</h4>
                         <span th:text="${property.size}">340m
-                        </span><span><sup>2</sup></span>
+                        </span>
                       </li>
                       <li>
                         <h4 class="card-info-title">Agent</h4>
