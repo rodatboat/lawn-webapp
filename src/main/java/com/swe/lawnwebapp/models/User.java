@@ -32,9 +32,8 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
-    // TODO: Setup favorites Property list
-    //@OneToMany(mappedBy = "user")
-    //private List<Property> favorites;
+    @OneToMany(mappedBy = "user")
+    private List<Favorite> favorites;
 
     private boolean locked = false;
     private boolean enabled = true;
@@ -43,6 +42,14 @@ public class User implements UserDetails {
         this.username = username;
         this.password = password;
         this.userRole = userRole;
+    }
+
+    public List<Favorite> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Favorite> favorites) {
+        this.favorites = favorites;
     }
 
     @Override

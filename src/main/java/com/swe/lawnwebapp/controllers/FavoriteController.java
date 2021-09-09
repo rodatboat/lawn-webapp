@@ -1,40 +1,54 @@
 package com.swe.lawnwebapp.controllers;
 
+import com.swe.lawnwebapp.models.Favorite;
 import com.swe.lawnwebapp.models.Property;
 import com.swe.lawnwebapp.models.User;
+import com.swe.lawnwebapp.services.FavoriteService;
 import com.swe.lawnwebapp.services.PropertyService;
 import com.swe.lawnwebapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class UserController {
+public class FavoriteController {
 //    private User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal;
 
-//    @Autowired
-//    private UserService userService;
-//
-//    @GetMapping({"/user/watchlist", "/user"})
-//    public String goUser(Model model, Principal user){
-//
-//        if(user == null){
-//            return "login";
-//        }
-//
-//        model.addAttribute("user", userService.loadUserByUsername(user.getName()));
-//
-//        return "blogs-grid";
-//    }
+    @Autowired
+    private FavoriteService favoriteService;
+
+    @Autowired
+    private PropertyService propertyService;
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping({"/user/watchlist", "/user"})
+    public String goUser(Model model, Principal user){
+
+        if(user == null){
+            return "login";
+        }
+
+        User userInfo = (User) userService.loadUserByUsername(user.getName());
+        List<Property> favoritesList = new ArrayList<Property>();
+
+        for(Favorite fav : userInfo.getFavorites()){
+            propertyService.findById(fav.getProperty_id()).ifPresent((o)-> favoritesList.add(o));
+        }
+
+        model.addAttribute("user", userInfo);
+        model.addAttribute("favorites", favoritesList);
+
+
+        return "blogs-grid";
+    }
 //
 //    // th:href="@{/countries/findById/(id=${country.id})}"
 //    @PostMapping("/user/watchlistAdd")
@@ -70,7 +84,4 @@ public class UserController {
 ////        return "redirect:/countries";
 //        return "redirect:/user/watchlist";
 //    }
-
-
-
 }
