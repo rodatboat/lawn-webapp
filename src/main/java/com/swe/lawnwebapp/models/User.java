@@ -18,7 +18,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User implements UserDetails {
-    // TODO: Add logout button
     // TODO: Change password
     // TODO: Register modal
     // TODO: Filter modal
