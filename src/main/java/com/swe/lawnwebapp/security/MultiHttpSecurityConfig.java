@@ -37,7 +37,8 @@ public class MultiHttpSecurityConfig {
                             "/properties/**",
                             "/agents/**",
                             "/assets/**",
-                            "/register").permitAll()
+                            "/register",
+                            "/login").permitAll()
                     .anyRequest().authenticated()
 
                     .and().logout().logoutSuccessUrl("/index.html").permitAll()

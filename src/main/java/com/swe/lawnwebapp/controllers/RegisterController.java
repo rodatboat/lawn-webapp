@@ -18,7 +18,7 @@ public class RegisterController {
     @PostMapping(value = "register")
     public String register(@RequestBody Register request){
         if(registerService.register(request)){
-            return "/login";
+            return "redirect:/login";
         }
 
         // Fails to register send to home.
