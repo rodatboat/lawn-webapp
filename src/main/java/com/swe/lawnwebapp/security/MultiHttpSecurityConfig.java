@@ -1,12 +1,10 @@
 package com.swe.lawnwebapp.security;
 
-import com.swe.lawnwebapp.repositories.UserRepository;
 import com.swe.lawnwebapp.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -38,7 +36,8 @@ public class MultiHttpSecurityConfig {
                     .antMatchers("/",
                             "/properties/**",
                             "/agents/**",
-                            "/assets/**").permitAll()
+                            "/assets/**",
+                            "/register").permitAll()
                     .anyRequest().authenticated()
 
                     .and().logout().logoutSuccessUrl("/index.html").permitAll()

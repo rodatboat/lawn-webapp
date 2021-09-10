@@ -13,14 +13,19 @@ import javax.persistence.*;
 public class Favorite {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int property_id;
 
 
     @ManyToOne
-    @JoinColumn(name="userid", insertable=false, updatable=false)
+    @JoinColumn(name="userid", insertable=true, updatable=false)
     private User user;
+
+    public Favorite(int property_id, User user) {
+        this.property_id = property_id;
+        this.user = user;
+    }
 
     public int getId() {
         return id;

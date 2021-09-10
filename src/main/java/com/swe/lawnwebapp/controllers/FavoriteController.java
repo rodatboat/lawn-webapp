@@ -12,10 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -34,8 +31,8 @@ public class FavoriteController {
     @Autowired
     private UserService userService;
 
-    @GetMapping({"/user/watchlist", "/user"})
-    public String goUser(Model model, Principal user){
+    @GetMapping({"/user/watchlist"})
+    public String goWatchlist(Model model, Principal user){
 
         if(user == null){
             return "login";
@@ -56,27 +53,19 @@ public class FavoriteController {
         return "blogs-grid";
     }
 
-//    // th:href="@{/countries/findById/(id=${country.id})}"
-    @PostMapping("/user/watchlistAdd")
+    @GetMapping("/user/watchlistAdd")
     public String watchlistAdd(int id, Principal user){
 
         if(user == null){
             return "/login";
         }
 
-        // TODO: Implement delete watchlist item.
 
-//        List<Property> watchlist = user.getWatchlist();
-//
-//        try{
-//            propertyService.findById(id).ifPresent((o) -> watchlist.add(o));
-//            loggedInUser.setWatchlist(watchlist);
-//            userService.save(loggedInUser);
-//
-//        } catch (Exception e){
-//            throw new IllegalStateException("");
-//        }
+        User userInfo = (User) userService.loadUserByUsername(user.getName());
+        favoriteService.save(new Favorite(id, userInfo));
 
+
+        // TODO: Implement add watchlist item.
         return "redirect:/user/watchlist";
     }
 
@@ -86,6 +75,7 @@ public class FavoriteController {
         if(user == null){
             return "/login";
         }
+
         favoriteService.delete(id);
 
         return "redirect:/user/watchlist";
