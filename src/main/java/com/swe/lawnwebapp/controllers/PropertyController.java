@@ -18,7 +18,7 @@ public class PropertyController {
     @Autowired
     private ImageService imageService;
 
-    @GetMapping({"/properties", "/property-grid.html"})
+    @GetMapping({"/properties"})
     public String goProperties(Model model){
         model.addAttribute("properties", propertyService.getProperties());
 

@@ -18,10 +18,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User implements UserDetails {
-    // TODO: Change password
-    // TODO: Register modal
-    // TODO: Filter modal
-    // TODO: Sorting properties
+    // TODO: Change password (Required)
+    // TODO: Register modal (Required)
+    // TODO: Filter modal (Optional)
+    // TODO: Sorting properties (Optional)
 
     @Id
     @SequenceGenerator(name="user_sequence",

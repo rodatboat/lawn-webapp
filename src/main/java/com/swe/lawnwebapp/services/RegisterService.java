@@ -11,7 +11,6 @@ public class RegisterService {
 
     private final String INVALID_USERNAME_INVALID = "Username %s is invalid.";
     private final String INVALID_PASSWORD_INVALID = "Password %s is invalid.";
-    // TODO: Password validation
 
     @Autowired
     private UserService userService;
