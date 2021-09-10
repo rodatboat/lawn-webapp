@@ -17,7 +17,6 @@ public class Favorite {
     private int id;
     private int property_id;
 
-
     @ManyToOne
     @JoinColumn(name="userid", insertable=true, updatable=false)
     private User user;

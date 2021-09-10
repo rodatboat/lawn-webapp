@@ -18,9 +18,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User implements UserDetails {
-    // TODO: Create Security Questions Entity, if all correct. Allow to change password.
+    // TODO: Add logout button
+    // TODO: Change password
     // TODO: Register modal
     // TODO: Filter modal
+    // TODO: Sorting properties
 
     @Id
     @SequenceGenerator(name="user_sequence",
@@ -37,6 +39,9 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private List<Favorite> favorites;
+
+    @OneToMany(mappedBy = "user")
+    private List<SecurityQuestion> securityQuestions;
 
     private boolean locked = false;
     private boolean enabled = true;
