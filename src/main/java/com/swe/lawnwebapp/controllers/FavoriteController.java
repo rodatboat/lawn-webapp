@@ -64,8 +64,6 @@ public class FavoriteController {
         User userInfo = (User) userService.loadUserByUsername(user.getName());
         favoriteService.save(new Favorite(id, userInfo));
 
-
-        // TODO: Implement add watchlist item.
         return "redirect:/user/watchlist";
     }
 
