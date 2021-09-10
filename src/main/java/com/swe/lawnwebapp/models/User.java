@@ -18,7 +18,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User implements UserDetails {
-//    TODO: Create Security Questions Entity, if all correct. Allow to change password.
+    // TODO: Create Security Questions Entity, if all correct. Allow to change password.
+    // TODO: Register modal
+    // TODO: Filter modal
 
     @Id
     @SequenceGenerator(name="user_sequence",
