@@ -96,5 +96,4 @@ public class User implements UserDetails {
         return true;
     }
 
-    // User(int id, string username, string password, boolean admin_permissions, int favorites/watchlist)
 }
