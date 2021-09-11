@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 public class SecurityQuestion {
-    // TODO: OneToOne Relationship for Security Qeustion & Question
+    // TODO: OneToOne Relationship for Security Question & Question
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
