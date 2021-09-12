@@ -48,6 +48,7 @@ public class FavoriteController {
         // public Pair(K key, V value)
         model.addAttribute("user", userInfo);
         model.addAttribute("favorites", favoritesList);
+        model.addAttribute("userName", user == null ? "anonymousUser" : user.getName());
 
 
         return "blogs-grid";

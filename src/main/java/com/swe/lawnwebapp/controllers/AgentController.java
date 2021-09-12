@@ -18,18 +18,22 @@ public class AgentController {
     private AgentService agentService;
 
     @GetMapping({"/agents", "/agents-grid.html"})
-    public String goAgents(Model model){
+    public String goAgents(Model model, Principal user){
 
         model.addAttribute("agents", agentService.getAgents());
+        model.addAttribute("userName", user == null ? "anonymousUser" : user.getName());
+
         return "agents-grid";
     }
 
     @GetMapping("/agents/{id}")
-    public String goPropertyDetails(@PathVariable int id, Model model){
+    public String goPropertyDetails(@PathVariable int id, Model model, Principal user){
 
         agentService.findById(id).ifPresent(o -> {
             model.addAttribute("agent", o);
         });
+
+        model.addAttribute("userName", user == null ? "anonymousUser" : user.getName());
 
         return "agent-single";
     }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,7 +33,7 @@ public class ApplicationController {
     private AgentRepository agentRepository;
 
     @GetMapping({"/index", "/", "/index.html", "/home"})
-    public String goHome(Model model){
+    public String goHome(Model model, Principal user){
 
         Random rand = new Random();
 
@@ -60,6 +61,7 @@ public class ApplicationController {
             latestProperties.add(recentProperty);
         }
 
+        model.addAttribute("userName", user == null ? "anonymousUser" : user.getName());
         model.addAttribute("latestproperties", latestProperties);
         model.addAttribute("properties", randProperties);
         model.addAttribute("agents", randAgents);

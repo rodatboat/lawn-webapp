@@ -176,10 +176,10 @@
       <button type="button" class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
         <i class="bi bi-search"></i>
       </button>
-      <a th:href="@{/logout}">
+      <a th:href="@{${userName != 'anonymousUser' ? '/logout' : '/login'}}">
         <button type="button" class="btn btn-b-n"
-                th:style="'margin-left: 5px; background-color: red; visibility:' + ${#authentication.getPrincipal() != 'anonymousUser' ? 'visible;' : 'hidden;'}">
-          <i class="bi bi-slash-circle"></i>
+                th:style="'margin-left: 5px; background-color: ' + ${userName != 'anonymousUser' ? 'red;' : '#0b5ed7;'}">
+          <i th:class="'bi ' + ${userName == 'anonymousUser' ? 'bi-key' : 'bi-slash-square'}"></i>
         </button>
       </a>
 

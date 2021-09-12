@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import io.github.cdimascio.dotenv.Dotenv;
 
+import java.security.Principal;
+
 @Controller
 public class PropertyController {
 
@@ -19,8 +21,9 @@ public class PropertyController {
     private ImageService imageService;
 
     @GetMapping({"/properties"})
-    public String goProperties(Model model){
+    public String goProperties(Model model, Principal user){
         model.addAttribute("properties", propertyService.getProperties());
+        model.addAttribute("userName", user == null ? "anonymousUser" : user.getName());
 
         return "property-grid";
     }
