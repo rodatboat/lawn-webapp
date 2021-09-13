@@ -174,10 +174,14 @@
             </ul>
         </div>
 
-        <button type="button" class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse" data-bs-toggle="collapse"
-                data-bs-target="#navbarTogglerDemo01">
-            <i class="bi bi-search"></i>
-        </button>
+        <a th:href="@{/register}">
+            <button type="button" class="btn btn-b-n"
+                    th:style="'margin-left: 5px; background-color: green; visibility: '
+                + ${userName == 'anonymousUser' ? 'visible;' : 'hidden;'}">
+                <i th:class="'bi ' + ${userName == 'anonymousUser' ? 'bi-person-plus' : 'bi-person-plus'}"></i>
+            </button>
+        </a>
+
         <a th:href="@{${userName != 'anonymousUser' ? '/logout' : '/login'}}">
             <button type="button" class="btn btn-b-n"
                     th:style="'margin-left: 5px; background-color: ' + ${userName != 'anonymousUser' ? 'red;' : '#0b5ed7;'}">

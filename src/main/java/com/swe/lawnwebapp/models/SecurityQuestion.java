@@ -10,6 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 public class SecurityQuestion {
 
     @Id
@@ -18,11 +19,11 @@ public class SecurityQuestion {
     private String correct_answer;
 
     @ManyToOne
-    @JoinColumn(name="userid", insertable=false, updatable=false)
+    @JoinColumn(name="userid", insertable=true, updatable=true)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name="questionid", insertable=false, updatable=false)
+    @JoinColumn(name="questionid", insertable=true, updatable=true)
     private Question question;
 
     public SecurityQuestion(String correct_answer, User user, Question question) {

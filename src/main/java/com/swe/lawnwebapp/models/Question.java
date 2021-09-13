@@ -22,9 +22,8 @@ public class Question {
     @OneToMany(mappedBy = "question")
     private List<SecurityQuestion> security_questions;
 
-    public Question(String question, List<SecurityQuestion> security_questions) {
+    public Question(String question) {
         this.question = question;
-        this.security_questions = security_questions;
     }
 
     public String getQuestion() {
@@ -42,5 +41,9 @@ public class Question {
 
     public void setSecurity_questions(List<SecurityQuestion> security_questions) {
         this.security_questions = security_questions;
+    }
+
+    public void addSecurity_question(SecurityQuestion q){
+        this.security_questions.add(q);
     }
 }

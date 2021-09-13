@@ -1,5 +1,6 @@
 package com.swe.lawnwebapp.models;
 
+import com.swe.lawnwebapp.security.UserRole;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -20,7 +21,7 @@ public class Register {
     private String securityQuestion2Answer;
     private String securityQuestion3Answer;
 
-    private boolean isAgent = false;
+    private UserRole userRole;
 
     public Register(String username, String password, String passwordConfirm,
                     int securityQuestion1,
@@ -29,7 +30,7 @@ public class Register {
                     String securityQuestion1Answer,
                     String securityQuestion2Answer,
                     String securityQuestion3Answer,
-                    boolean isAgent) {
+                    UserRole userRole) {
         this.username = username;
         this.password = password;
         this.passwordConfirm = passwordConfirm;
@@ -39,7 +40,7 @@ public class Register {
         this.securityQuestion1Answer = securityQuestion1Answer;
         this.securityQuestion2Answer = securityQuestion2Answer;
         this.securityQuestion3Answer = securityQuestion3Answer;
-        this.isAgent = isAgent;
+        this.userRole = userRole;
     }
 
     public String getPasswordConfirm() {
@@ -78,7 +79,7 @@ public class Register {
         return password;
     }
 
-    public boolean isAgent() {
-        return isAgent;
+    public UserRole getUserRole() {
+        return userRole;
     }
 }

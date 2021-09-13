@@ -173,13 +173,18 @@
         </ul>
       </div>
 
-      <button type="button" class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
-        <i class="bi bi-search"></i>
-      </button>
-      <a th:href="@{/logout}">
+      <a th:href="@{/register}">
         <button type="button" class="btn btn-b-n"
-                th:style="'margin-left: 5px; background-color: red; visibility:' + ${#authentication.getPrincipal() != 'anonymousUser' ? 'visible;' : 'hidden;'}">
-          <i class="bi bi-slash-circle"></i>
+                th:style="'margin-left: 5px; background-color: green; visibility: '
+                + ${userName == 'anonymousUser' ? 'visible;' : 'hidden;'}">
+          <i th:class="'bi ' + ${userName == 'anonymousUser' ? 'bi-person-plus' : 'bi-person-plus'}"></i>
+        </button>
+      </a>
+
+      <a th:href="@{${userName != 'anonymousUser' ? '/logout' : '/login'}}">
+        <button type="button" class="btn btn-b-n"
+                th:style="'margin-left: 5px; background-color: ' + ${userName != 'anonymousUser' ? 'red;' : '#0b5ed7;'}">
+          <i th:class="'bi ' + ${userName == 'anonymousUser' ? 'bi-key' : 'bi-slash-square'}"></i>
         </button>
       </a>
 
@@ -253,10 +258,12 @@
               </div>
 
               <div class="form-group">
-                <input class="form-check-input" type="checkbox" id="isAgent" name="isAgent">
-                <label class="form-check-label" for="isAgent">
-                  Agent
-                </label>
+                <label for="userRole" class="col-form-label">User Role:</label>
+                <select class="custom-select form-control" id="userRole" name="userRole">
+                  <option selected>Choose...</option>
+                  <option th:each="role : ${roles}"
+                          th:value="${role}" th:text="${role}">One</option>
+                </select>
               </div>
 
               <div class="form-group" style="margin-top: 10px;">

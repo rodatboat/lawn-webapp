@@ -50,40 +50,55 @@ public class RegisterService {
             User newUser = new User(
                     request.getUsername(),
                     request.getPassword(),
-                    (request.isAgent()) ? UserRole.AGENT : UserRole.USER
+                    request.getUserRole()
             );
 
             userService.registerUser(newUser);
 
             questionService.findById(request.getSecurityQuestion1()).ifPresent((o) -> {
-                secQuestions.add(new SecurityQuestion(
+                SecurityQuestion q = new SecurityQuestion(
                         request.getSecurityQuestion1Answer(),
                         (User) userService.loadUserByUsername(newUser.getUsername()),
-                        (Question) o
-                        ));
+                        o
+                );
+
+                questionService.findById(o.getId()).ifPresent(i -> {
+                    i.addSecurity_question(q);
+                });
+
+                securityQuestionService.save(q);
+                secQuestions.add(q);
             });
 
             questionService.findById(request.getSecurityQuestion2()).ifPresent((o) -> {
-                secQuestions.add(new SecurityQuestion(
+                SecurityQuestion q = new SecurityQuestion(
                         request.getSecurityQuestion2Answer(),
                         (User) userService.loadUserByUsername(newUser.getUsername()),
-                        (Question) o
-                ));
+                        o
+                );
+
+                questionService.findById(o.getId()).ifPresent(i -> {
+                    i.addSecurity_question(q);
+                });
+
+                securityQuestionService.save(q);
+                secQuestions.add(q);
             });
 
             questionService.findById(request.getSecurityQuestion3()).ifPresent((o) -> {
-                secQuestions.add(new SecurityQuestion(
+                SecurityQuestion q = new SecurityQuestion(
                         request.getSecurityQuestion3Answer(),
                         (User) userService.loadUserByUsername(newUser.getUsername()),
-                        (Question) o
-                ));
-            });
+                        o
+                );
 
-            // TODO: Parse to ints
+                questionService.findById(o.getId()).ifPresent(i -> {
+                    i.addSecurity_question(q);
+                });
 
-            for(SecurityQuestion q : secQuestions){
                 securityQuestionService.save(q);
-            }
+                secQuestions.add(q);
+            });
 
             newUser.setSecurityQuestions(secQuestions);
 
