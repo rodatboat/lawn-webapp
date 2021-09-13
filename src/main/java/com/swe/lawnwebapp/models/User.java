@@ -18,7 +18,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User implements UserDetails {
-    // TODO: Register modal/form using bootstrap templates (Required)
     // TODO: Change password (Required)
     // TODO: Replace Search button w/ add property for agent accounts
     // TODO: Filter modal (Optional)
