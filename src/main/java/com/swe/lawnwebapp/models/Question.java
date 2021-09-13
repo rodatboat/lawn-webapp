@@ -3,6 +3,7 @@ package com.swe.lawnwebapp.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -17,15 +18,12 @@ public class Question {
     private int id;
 
     private String question;
-    private String correct_answer;
 
-    @ManyToOne
-    @JoinColumn(name="securityquestionid", insertable=false, updatable=false)
-    private SecurityQuestion security_questions;
+    @OneToMany(mappedBy = "question")
+    private List<SecurityQuestion> security_questions;
 
-    public Question(String question, String correct_answer, SecurityQuestion security_questions) {
+    public Question(String question, List<SecurityQuestion> security_questions) {
         this.question = question;
-        this.correct_answer = correct_answer;
         this.security_questions = security_questions;
     }
 
@@ -37,19 +35,12 @@ public class Question {
         this.question = question;
     }
 
-    public String getCorrect_answer() {
-        return correct_answer;
-    }
+    public List<SecurityQuestion> getSecurity_questions() {
 
-    public void setCorrect_answer(String correct_answer) {
-        this.correct_answer = correct_answer;
-    }
-
-    public SecurityQuestion getSecurity_questions() {
         return security_questions;
     }
 
-    public void setSecurity_questions(SecurityQuestion security_questions) {
+    public void setSecurity_questions(List<SecurityQuestion> security_questions) {
         this.security_questions = security_questions;
     }
 }

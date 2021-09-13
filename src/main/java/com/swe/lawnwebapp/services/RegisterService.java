@@ -1,23 +1,41 @@
 package com.swe.lawnwebapp.services;
 
+import com.swe.lawnwebapp.models.Question;
 import com.swe.lawnwebapp.models.Register;
+import com.swe.lawnwebapp.models.SecurityQuestion;
 import com.swe.lawnwebapp.models.User;
 import com.swe.lawnwebapp.security.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class RegisterService {
 
     private final String INVALID_USERNAME_INVALID = "Username %s is invalid.";
     private final String INVALID_PASSWORD_INVALID = "Password %s is invalid.";
+    private final String PASSWORD_MATCH_FAIL = "Passwords did not match.";
 
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private SecurityQuestionService securityQuestionService;
+
+    @Autowired
+    private QuestionService questionService;
+
     public boolean register(Register request) {
+//        System.out.println(request);
+
         boolean usernameIsValid = validateUsername(request.getUsername());
         boolean passwordIsValid = validatePassword(request.getPassword());
+
+        if(request.getPasswordConfirm() != request.getPassword()){
+            throw new IllegalStateException(PASSWORD_MATCH_FAIL);
+        }
 
         if(!usernameIsValid){
             throw new IllegalStateException(String.format(INVALID_USERNAME_INVALID, request.getUsername()));
@@ -27,13 +45,53 @@ public class RegisterService {
             throw new IllegalStateException(String.format(INVALID_PASSWORD_INVALID, request.getPassword()));
         }
 
-        return userService.registerUser(
-                new User(
-                        request.getUsername(),
-                        request.getPassword(),
-                        UserRole.USER
-                )
-        );
+        try {
+            List<SecurityQuestion> secQuestions = new ArrayList<>();
+
+            User newUser = (User) userService.loadUserByUsername(request.getUsername());
+
+            questionService.findById(request.getSecurityQuestion1()).ifPresent((o) -> {
+                secQuestions.add(new SecurityQuestion(
+                        request.getSecurityQuestion1Answer(),
+                        newUser,
+                        o
+                        ));
+            });
+
+            questionService.findById(request.getSecurityQuestion2()).ifPresent((o) -> {
+                secQuestions.add(new SecurityQuestion(
+                        request.getSecurityQuestion2Answer(),
+                        newUser,
+                        o
+                ));
+            });
+
+            questionService.findById(request.getSecurityQuestion3()).ifPresent((o) -> {
+                secQuestions.add(new SecurityQuestion(
+                        request.getSecurityQuestion3Answer(),
+                        newUser,
+                        o
+                ));
+            });
+
+            userService.registerUser(
+                    new User(
+                            request.getUsername(),
+                            request.getPassword(),
+                            secQuestions,
+                            UserRole.USER
+                    )
+            );
+
+            for(SecurityQuestion q : secQuestions){
+                securityQuestionService.save(q);
+            }
+
+            return true;
+
+        } catch (Exception e){
+            return false;
+        }
     }
 
     public boolean validateUsername(String username){

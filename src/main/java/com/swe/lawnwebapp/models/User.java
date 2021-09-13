@@ -19,8 +19,8 @@ import java.util.List;
 @AllArgsConstructor
 public class User implements UserDetails {
     // TODO: Register modal/form using bootstrap templates (Required)
-    // TODO: Replace Search button w/ add property for agent accounts.
     // TODO: Change password (Required)
+    // TODO: Replace Search button w/ add property for agent accounts
     // TODO: Filter modal (Optional)
     // TODO: Sorting properties (Optional)
 
@@ -46,10 +46,11 @@ public class User implements UserDetails {
     private boolean locked = false;
     private boolean enabled = true;
 
-    public User(String username, String password, UserRole userRole) {
+    public User(String username, String password, List<SecurityQuestion> securityQuestions, UserRole userRole) {
         this.username = username;
         this.password = password;
         this.userRole = userRole;
+        this.securityQuestions = securityQuestions;
     }
 
     public List<Favorite> getFavorites() {

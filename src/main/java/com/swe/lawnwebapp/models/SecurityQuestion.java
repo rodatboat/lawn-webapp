@@ -3,7 +3,6 @@ package com.swe.lawnwebapp.models;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
@@ -12,22 +11,22 @@ import java.util.List;
 @Getter
 @Setter
 public class SecurityQuestion {
-    // TODO: OneToOne Relationship for Security Question & Question
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String answer;
+    private String correct_answer;
 
     @ManyToOne
     @JoinColumn(name="userid", insertable=false, updatable=false)
     private User user;
 
-    @OneToMany(mappedBy = "security_questions")
-    private List<Question> question;
+    @ManyToOne
+    @JoinColumn(name="questionid", insertable=false, updatable=false)
+    private Question question;
 
-    public SecurityQuestion(String answer, User user, List<Question> question) {
-        this.answer = answer;
+    public SecurityQuestion(String correct_answer, User user, Question question) {
+        this.correct_answer = correct_answer;
         this.user = user;
         this.question = question;
     }
@@ -40,20 +39,20 @@ public class SecurityQuestion {
         this.id = id;
     }
 
-    public List<Question> getQuestion() {
+    public Question getQuestion() {
         return question;
     }
 
-    public void setQuestion(List<Question> question) {
+    public void setQuestion(Question question) {
         this.question = question;
     }
 
     public String getAnswer() {
-        return answer;
+        return correct_answer;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setAnswer(String correct_answer) {
+        this.correct_answer = correct_answer;
     }
 
     public User getUser() {

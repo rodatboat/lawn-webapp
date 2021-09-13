@@ -8,8 +8,6 @@ import com.swe.lawnwebapp.services.PropertyService;
 import com.swe.lawnwebapp.services.UserService;
 import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +33,7 @@ public class FavoriteController {
     public String goWatchlist(Model model, Principal user){
 
         if(user == null){
-            return "login";
+            return "register";
         }
 
         User userInfo = (User) userService.loadUserByUsername(user.getName());
@@ -58,7 +56,7 @@ public class FavoriteController {
     public String watchlistAdd(int id, Principal user){
 
         if(user == null){
-            return "/login";
+            return "register";
         }
 
 
@@ -72,7 +70,7 @@ public class FavoriteController {
     public String watchlistDelete(int id, Principal user){
 
         if(user == null){
-            return "/login";
+            return "register";
         }
 
         favoriteService.delete(id);
