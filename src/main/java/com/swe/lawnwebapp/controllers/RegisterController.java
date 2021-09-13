@@ -33,6 +33,7 @@ public class RegisterController {
     @PostMapping(value = "/register/add")
     public String register(Register request){
 
+
         if(registerService.register(request)){
             return "redirect:/login";
         }

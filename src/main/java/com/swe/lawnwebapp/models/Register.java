@@ -10,6 +10,8 @@ public class Register {
     private String password;
     private String passwordConfirm;
 
+    // TODO: Add user role option in register
+
     private int securityQuestion1;
     private int securityQuestion2;
     private int securityQuestion3;
@@ -18,15 +20,26 @@ public class Register {
     private String securityQuestion2Answer;
     private String securityQuestion3Answer;
 
-    public Register(String username, String password, int securityQuestion1, int securityQuestion2, int securityQuestion3, String securityQuestion1Answer, String securityQuestion2Answer, String securityQuestion3Answer) {
+    private boolean isAgent = false;
+
+    public Register(String username, String password, String passwordConfirm,
+                    int securityQuestion1,
+                    int securityQuestion2,
+                    int securityQuestion3,
+                    String securityQuestion1Answer,
+                    String securityQuestion2Answer,
+                    String securityQuestion3Answer,
+                    boolean isAgent) {
         this.username = username;
         this.password = password;
+        this.passwordConfirm = passwordConfirm;
         this.securityQuestion1 = securityQuestion1;
         this.securityQuestion2 = securityQuestion2;
         this.securityQuestion3 = securityQuestion3;
         this.securityQuestion1Answer = securityQuestion1Answer;
         this.securityQuestion2Answer = securityQuestion2Answer;
         this.securityQuestion3Answer = securityQuestion3Answer;
+        this.isAgent = isAgent;
     }
 
     public String getPasswordConfirm() {
@@ -63,5 +76,9 @@ public class Register {
 
     public String getPassword() {
         return password;
+    }
+
+    public boolean isAgent() {
+        return isAgent;
     }
 }

@@ -28,12 +28,11 @@ public class RegisterService {
     private QuestionService questionService;
 
     public boolean register(Register request) {
-//        System.out.println(request);
 
         boolean usernameIsValid = validateUsername(request.getUsername());
         boolean passwordIsValid = validatePassword(request.getPassword());
 
-        if(request.getPasswordConfirm() != request.getPassword()){
+        if(!request.getPasswordConfirm().equals(request.getPassword()) ){
             throw new IllegalStateException(PASSWORD_MATCH_FAIL);
         }
 
@@ -48,44 +47,45 @@ public class RegisterService {
         try {
             List<SecurityQuestion> secQuestions = new ArrayList<>();
 
-            User newUser = (User) userService.loadUserByUsername(request.getUsername());
+            User newUser = new User(
+                    request.getUsername(),
+                    request.getPassword(),
+                    (request.isAgent()) ? UserRole.AGENT : UserRole.USER
+            );
+
+            userService.registerUser(newUser);
 
             questionService.findById(request.getSecurityQuestion1()).ifPresent((o) -> {
                 secQuestions.add(new SecurityQuestion(
                         request.getSecurityQuestion1Answer(),
-                        newUser,
-                        o
+                        (User) userService.loadUserByUsername(newUser.getUsername()),
+                        (Question) o
                         ));
             });
 
             questionService.findById(request.getSecurityQuestion2()).ifPresent((o) -> {
                 secQuestions.add(new SecurityQuestion(
                         request.getSecurityQuestion2Answer(),
-                        newUser,
-                        o
+                        (User) userService.loadUserByUsername(newUser.getUsername()),
+                        (Question) o
                 ));
             });
 
             questionService.findById(request.getSecurityQuestion3()).ifPresent((o) -> {
                 secQuestions.add(new SecurityQuestion(
                         request.getSecurityQuestion3Answer(),
-                        newUser,
-                        o
+                        (User) userService.loadUserByUsername(newUser.getUsername()),
+                        (Question) o
                 ));
             });
 
-            userService.registerUser(
-                    new User(
-                            request.getUsername(),
-                            request.getPassword(),
-                            secQuestions,
-                            UserRole.USER
-                    )
-            );
+            // TODO: Parse to ints
 
             for(SecurityQuestion q : secQuestions){
                 securityQuestionService.save(q);
             }
+
+            newUser.setSecurityQuestions(secQuestions);
 
             return true;
 

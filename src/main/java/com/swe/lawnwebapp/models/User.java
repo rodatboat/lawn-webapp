@@ -46,11 +46,10 @@ public class User implements UserDetails {
     private boolean locked = false;
     private boolean enabled = true;
 
-    public User(String username, String password, List<SecurityQuestion> securityQuestions, UserRole userRole) {
+    public User(String username, String password, UserRole userRole) {
         this.username = username;
         this.password = password;
         this.userRole = userRole;
-        this.securityQuestions = securityQuestions;
     }
 
     public List<Favorite> getFavorites() {
