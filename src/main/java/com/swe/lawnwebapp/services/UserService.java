@@ -1,5 +1,7 @@
 package com.swe.lawnwebapp.services;
 
+import com.swe.lawnwebapp.models.PassChangeRequest;
+import com.swe.lawnwebapp.models.SecurityQuestion;
 import com.swe.lawnwebapp.models.User;
 import com.swe.lawnwebapp.repositories.UserRepository;
 import lombok.AllArgsConstructor;
@@ -48,6 +50,35 @@ public class UserService implements UserDetailsService {
             return false;
         }
 
+        return true;
+    }
+
+    public boolean changePassword(User user, PassChangeRequest request){
+        try{
+            boolean question1Correct = false;
+            boolean question2Correct = false;
+            boolean question3Correct = false;
+
+            for(SecurityQuestion q : user.getSecurityQuestions()) {
+                if (q.getAnswer().equals(request.getSecQuestion1Answer())){
+                    question1Correct = true;
+                } else if (q.getAnswer().equals(request.getSecQuestion2Answer())){
+                    question2Correct = true;
+                } else if (q.getAnswer().equals(request.getSecQuestion3Answer())){
+                    question3Correct = true;
+                } else {
+                    throw new IllegalStateException("Change password failed, incorrect answer to security questions.");
+                }
+            }
+
+            if(question1Correct && question2Correct && question3Correct){
+                String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+                user.setPassword(encodedPassword);
+            }
+
+        } catch (Exception e){
+            return false;
+        }
         return true;
     }
 

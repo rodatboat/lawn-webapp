@@ -11,8 +11,6 @@ public class Register {
     private String password;
     private String passwordConfirm;
 
-    // TODO: Add user role option in register
-
     private int securityQuestion1;
     private int securityQuestion2;
     private int securityQuestion3;

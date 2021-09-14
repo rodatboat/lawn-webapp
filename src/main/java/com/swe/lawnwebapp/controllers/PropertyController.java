@@ -29,7 +29,7 @@ public class PropertyController {
     }
 
     @GetMapping("/properties/{id}")
-    public String goPropertyDetails(@PathVariable int id, Model model){
+    public String goPropertyDetails(@PathVariable int id, Model model, Principal user){
         Dotenv dotenv = Dotenv.load();
         String apiKey = dotenv.get("mapApiKey");
 
@@ -38,6 +38,7 @@ public class PropertyController {
             model.addAttribute("property", o);
             model.addAttribute("property_map_url", url_address);
             model.addAttribute("mapApiKey", apiKey);        });
+            model.addAttribute("userName", user == null ? "anonymousUser" : user.getName());
 
         return "property-single";
     }
