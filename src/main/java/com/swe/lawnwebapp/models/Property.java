@@ -28,6 +28,13 @@ public class Property {
     @OneToMany(mappedBy = "property")
     private List<Image> images;
 
+    public Property(int price, float size, String address, Agent agent) {
+        this.price = price;
+        this.size = size;
+        this.address = address;
+        this.agent = agent;
+    }
+
     public List<Image> getImages(){
         return images;
     }
