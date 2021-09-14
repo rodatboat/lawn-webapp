@@ -38,7 +38,7 @@ public class MultiHttpSecurityConfig {
                             "/agents/**",
                             "/assets/**",
                             "/register/**",
-//                            "/register",
+                            "/changePassword/**",
                             "/login").permitAll()
                     .anyRequest().authenticated()
 

@@ -55,6 +55,12 @@ public class UserService implements UserDetailsService {
 
     public boolean changePassword(User user, PassChangeRequest request){
         try{
+            if(request.getNewPassword().equals(request.getConfirmNewPassword())){
+
+            } else {
+                throw new IllegalStateException("Error changing password, input is incorrect!");
+            }
+
             boolean question1Correct = false;
             boolean question2Correct = false;
             boolean question3Correct = false;
@@ -72,8 +78,10 @@ public class UserService implements UserDetailsService {
             }
 
             if(question1Correct && question2Correct && question3Correct){
-                String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+                String encodedPassword = bCryptPasswordEncoder.encode(request.getNewPassword());
                 user.setPassword(encodedPassword);
+
+                userRepository.save(user);
             }
 
         } catch (Exception e){

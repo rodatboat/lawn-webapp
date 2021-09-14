@@ -204,6 +204,8 @@
                             Posts</h1>
                         <span class="color-text-a" th:text="'Watching: '
                         + ${user.getFavorites().size()} + ''">0 properties watched</span>
+                        <br>
+                        <a th:href="@{/changePassword}">Change Password</a>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-4">

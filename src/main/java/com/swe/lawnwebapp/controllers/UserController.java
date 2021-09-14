@@ -21,14 +21,15 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/change-password")
+    @GetMapping("/changePassword")
     public String goChangePassword(Model model, Principal user){
 
         if(user == null){
-            return "login";
+            return "redirect:/login";
         }
 
         User userInfo = (User) userService.loadUserByUsername(user.getName());
+
         model.addAttribute("user", userInfo);
 
         model.addAttribute("roles", UserRole.values());
@@ -37,14 +38,14 @@ public class UserController {
         return "password-change";
     }
 
-    @PostMapping(value = "/change-password/change")
+    @PostMapping(value = "/changePassword/change")
     public String changePassword(PassChangeRequest request, Principal user){
-        request.confirmPasswordChangeRequest();
-
 
         if(user == null){
-            return "login";
+            return "redirect:/login";
         }
+
+        userService.changePassword(((User) userService.loadUserByUsername(user.getName())), request);
 
         return "redirect:/logout";
     }
