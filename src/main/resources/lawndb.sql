@@ -56,7 +56,7 @@ CREATE TABLE `favorite` (
   PRIMARY KEY (`id`),
   KEY `FK1nbbl8ows3xxgl9hy6r4ht5iy` (`userid`),
   CONSTRAINT `FK1nbbl8ows3xxgl9hy6r4ht5iy` FOREIGN KEY (`userid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +65,7 @@ CREATE TABLE `favorite` (
 
 LOCK TABLES `favorite` WRITE;
 /*!40000 ALTER TABLE `favorite` DISABLE KEYS */;
-INSERT INTO `favorite` VALUES (1,7,16),(2,3,16);
+INSERT INTO `favorite` VALUES (1,0,34),(5,1,35),(6,0,36);
 /*!40000 ALTER TABLE `favorite` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,13 +156,9 @@ DROP TABLE IF EXISTS `question`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `question` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `correct_answer` varchar(255) DEFAULT NULL,
   `question` varchar(255) DEFAULT NULL,
-  `securityquestionid` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKon1395dmsbwdfhyg1vvabw5cd` (`securityquestionid`),
-  CONSTRAINT `FKon1395dmsbwdfhyg1vvabw5cd` FOREIGN KEY (`securityquestionid`) REFERENCES `security_question` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,6 +167,7 @@ CREATE TABLE `question` (
 
 LOCK TABLES `question` WRITE;
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
+INSERT INTO `question` VALUES (1,'In what city were you born?'),(2,'What is the name of your favorite pet?'),(3,'What is your mother\'s maiden name?'),(4,'What high school did you attend?'),(5,'What is the name of your first school?'),(6,'What was the make of your first car?'),(7,'What was your favorite food as a child?'),(8,'Where did you meet your spouse?'),(9,'What is your favorite color?'),(10,'What is your favorite sports team?');
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,12 +180,15 @@ DROP TABLE IF EXISTS `security_question`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `security_question` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `answer` varchar(255) DEFAULT NULL,
+  `correct_answer` varchar(255) DEFAULT NULL,
+  `questionid` int DEFAULT NULL,
   `userid` int DEFAULT NULL,
   PRIMARY KEY (`id`),
+  KEY `FK233dn130h5de88pf7n77otmkm` (`questionid`),
   KEY `FK3o8hlt0fmdtg1bnyxwon19vc6` (`userid`),
+  CONSTRAINT `FK233dn130h5de88pf7n77otmkm` FOREIGN KEY (`questionid`) REFERENCES `question` (`id`),
   CONSTRAINT `FK3o8hlt0fmdtg1bnyxwon19vc6` FOREIGN KEY (`userid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,6 +197,7 @@ CREATE TABLE `security_question` (
 
 LOCK TABLES `security_question` WRITE;
 /*!40000 ALTER TABLE `security_question` DISABLE KEYS */;
+INSERT INTO `security_question` VALUES (1,'1',1,34),(2,'2',4,34),(3,'3',7,34),(4,'1',3,35),(5,'2',5,35),(6,'3',7,35),(7,'test1',3,36),(8,'test2',4,36),(9,'test3',9,36);
 /*!40000 ALTER TABLE `security_question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -224,7 +225,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (16,_binary '',_binary '\0','$2a$10$DNzQikbjj0y5M1Hcj8nqc./zfx362zTTmD0PZUSO4Ps4ouOBxPOby','USER','test123!');
+INSERT INTO `user` VALUES (34,_binary '',_binary '\0','$2a$10$sCueQIZP9RoDATZpY6s6ieIHvU0DwZrTw10pjb5.hYqKogJL3cgfO','USER','rsuar123!'),(35,_binary '',_binary '\0','$2a$10$HpVYppRHF5Wb3xgduQL9M.Wfz5oGDmIsOFRxq7NCeo8fFoqTGZcNa','USER','alex123!'),(36,_binary '',_binary '\0','$2a$10$g9MevqbqhIVSMQ/j5M31h.ATabK3dNnYRPMl0TrecZCpEG4tDyl6C','USER','mike123!');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,7 +247,7 @@ CREATE TABLE `user_sequence` (
 
 LOCK TABLES `user_sequence` WRITE;
 /*!40000 ALTER TABLE `user_sequence` DISABLE KEYS */;
-INSERT INTO `user_sequence` VALUES (17);
+INSERT INTO `user_sequence` VALUES (37);
 /*!40000 ALTER TABLE `user_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -259,4 +260,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-11  2:10:35
+-- Dump completed on 2021-09-15 12:18:16
