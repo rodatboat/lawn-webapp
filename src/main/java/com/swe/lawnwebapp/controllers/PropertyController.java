@@ -11,6 +11,9 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 import java.security.Principal;
 
+/**
+ * The property controller handles specifics on properties.
+ */
 @Controller
 public class PropertyController {
 
@@ -20,6 +23,12 @@ public class PropertyController {
     @Autowired
     private ImageService imageService;
 
+    /**
+     * The properties endpoint lists all the properties in the database with some basic information
+     * @param model the html page being loaded, which information can get passed through.
+     * @param user the user.
+     * @return the view to be shown to the user.
+     */
     @GetMapping({"/properties"})
     public String goProperties(Model model, Principal user){
         model.addAttribute("properties", propertyService.getProperties());
@@ -28,6 +37,13 @@ public class PropertyController {
         return "property-grid";
     }
 
+    /**
+     * The property details endpoint gets a specific property, and shows a detailed view of that property.
+     * @param id
+     * @param model the html page being loaded, which information can get passed through.
+     * @param user the user.
+     * @return the view to be shown to the user.
+     */
     @GetMapping("/properties/{id}")
     public String goPropertyDetails(@PathVariable int id, Model model, Principal user){
         Dotenv dotenv = Dotenv.load();

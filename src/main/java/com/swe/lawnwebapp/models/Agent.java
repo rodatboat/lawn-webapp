@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Agent entity.
+ */
 @Entity
 @Data
 @NoArgsConstructor

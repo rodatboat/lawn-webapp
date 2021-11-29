@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Methods for the security question entity.
+ */
 @Service
 public class SecurityQuestionService {
 

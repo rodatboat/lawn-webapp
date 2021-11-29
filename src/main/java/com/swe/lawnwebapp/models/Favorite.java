@@ -4,6 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 
+/**
+ * Favorite entity.
+ */
 @Entity
 @Data
 @NoArgsConstructor

@@ -1,0 +1,2 @@
+mysqldump -u root -p lawndb> lawndb.sql
+database_name < file.sql

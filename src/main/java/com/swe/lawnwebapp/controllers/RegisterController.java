@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.security.Principal;
 
+/**
+ * The register controller is responsible for handling the registering process for new users.
+ */
 @Controller
 @AllArgsConstructor
 public class RegisterController {
@@ -25,6 +28,12 @@ public class RegisterController {
     @Autowired
     private QuestionService questionService;
 
+    /**
+     * Returns the register form.
+     * @param model the html page being loaded, which information can get passed through.
+     * @param user the user.
+     * @return the view to be shown to the user.
+     */
     @GetMapping("/register")
     public String goRegister(Model model, Principal user){
 
@@ -35,6 +44,11 @@ public class RegisterController {
         return "blog-single";
     }
 
+    /**
+     * The register add enpoint is where the register form is submitted to.
+     * @param request the forms data filled out by the user.
+     * @return the view to be shown to the user.
+     */
     @PostMapping(value = "/register/add")
     public String register(Register request){
 

@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * Image entity.
+ */
 @Entity
 @Data
 @NoArgsConstructor

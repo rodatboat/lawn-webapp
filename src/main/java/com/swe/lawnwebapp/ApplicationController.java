@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * The application controller handles the login, logout, and home endpoints.
+ */
 @Controller
 public class ApplicationController {
 
@@ -23,6 +26,12 @@ public class ApplicationController {
     @Autowired
     private AgentRepository agentRepository;
 
+    /**
+     * The home endpoint which returns the home page of the web application
+     * @param model the html page being loaded, which information can get passed through.
+     * @param user the user.
+     * @return the view to be shown to the user.
+     */
     @GetMapping({"/index", "/", "/index.html", "/home"})
     public String goHome(Model model, Principal user){
 
@@ -60,11 +69,19 @@ public class ApplicationController {
         return "index";
     }
 
+    /**
+     * The login endpoint.
+     * @return returns the login page.
+     */
     @GetMapping("/login")
     public String goLogin(){
         return "register";
     }
 
+    /**
+     * The logout endpoint.
+     * @return logs out the user, returns home page.
+     */
     @GetMapping("/logout")
     public String goLogout(){
         return "redirect:index";

@@ -13,6 +13,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * User entity.
+ */
 @Entity
 @Data
 @NoArgsConstructor

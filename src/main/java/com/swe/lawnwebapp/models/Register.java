@@ -4,6 +4,9 @@ import com.swe.lawnwebapp.security.UserRole;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+/**
+ * Register entity.
+ */
 @EqualsAndHashCode
 @ToString
 public class Register {

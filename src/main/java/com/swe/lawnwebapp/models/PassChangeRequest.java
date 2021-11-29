@@ -9,6 +9,9 @@ import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+/**
+ * Password Change Request form entity.
+ */
 @EqualsAndHashCode
 @ToString
 public class PassChangeRequest {

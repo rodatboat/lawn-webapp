@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Methods for the user entity.
+ */
 @Service
 @AllArgsConstructor
 public class UserService implements UserDetailsService {

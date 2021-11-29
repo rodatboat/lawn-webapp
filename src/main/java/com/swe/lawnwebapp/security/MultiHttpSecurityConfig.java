@@ -12,6 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+/**
+ * The http setup of the web application, handles which user roles have access to which api endpoints.
+ */
 @AllArgsConstructor
 @EnableWebSecurity
 public class MultiHttpSecurityConfig {
